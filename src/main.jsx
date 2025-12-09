@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../index.css";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/home";
-import WorkPage from "./pages/workpage";
-import ProjectsPage from "./pages/project";
+import Home from "./pages/Home";
+import WorkPage from "./pages/WorkPage";
+import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetail from "./pages/ProjectDetail";
 import WorkDetail from "./pages/WorkDetail";
 
