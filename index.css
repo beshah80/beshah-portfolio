@@ -37,8 +37,6 @@
 body {
   font-family: "Montserrat", system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  background-color: rgb(var(--color-background));
-  color: rgb(var(--color-foreground));
 }
 
 /* Typography */

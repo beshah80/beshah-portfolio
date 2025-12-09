@@ -4,9 +4,11 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useTheme } from "../contexts/ThemeContext";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
+  const { isDark } = useTheme();
 
   const projects = {
     "chat-app": {
@@ -70,18 +72,17 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 font-['Montserrat'] relative"
-      style={{ backgroundImage: 'radial-gradient(#d1d5db 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
-      
+    <div className="min-h-screen font-['Montserrat'] relative" style={{ backgroundColor: isDark ? '#111827' : '#ffffff' }}>
       <Navbar />
-
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-6 py-12" style={{ color: isDark ? '#ffffff' : '#000000' }}>
         <Link to="/projects" className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mb-8">
           <FontAwesomeIcon icon={faArrowLeft} />
           Back to projects
         </Link>
 
-        <h1 className="text-4xl font-black text-center mb-4 dark:text-white">{project.name}</h1>
+        <h1 className="text-4xl font-black mb-2" style={{ color: isDark ? '#ffffff' : '#111827' }}>
+          {project.name}
+        </h1>
         
         <a href={project.github} target="_blank" rel="noopener noreferrer" 
            className="flex items-center justify-center gap-2 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 mb-8">
@@ -89,11 +90,15 @@ const ProjectDetail = () => {
           View on GitHub
         </a>
 
-        <div className="flex flex-wrap justify-center gap-6 mb-12 text-sm">
-          <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+        <div className="flex items-center gap-4 mb-8">
+          <Link
+            to="/projects"
+            className="flex items-center hover:underline"
+            style={{ color: isDark ? '#93c5fd' : '#2563eb' }}
+          >  
             <FontAwesomeIcon icon={faUsers} />
             <span><b>Team Size:</b> {project.teamSize}</span>
-          </div>
+          </Link>
           <div className="text-gray-700 dark:text-gray-300">
             <span><b>Role:</b> {project.role}</span>
           </div>
@@ -103,20 +108,38 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-black mb-4 dark:text-white">Tech Stack</h2>
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((tech, index) => (
-              <span key={index} className="bg-gray-100 dark:bg-gray-800 dark:text-gray-200 text-xs font-bold px-3 py-2 rounded border border-gray-300 dark:border-gray-700">
-                {tech}
-              </span>
-            ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div 
+            className="p-6 rounded-xl"
+            style={{
+              backgroundColor: isDark ? '#1f2937' : '#f9fafb',
+              border: isDark ? '1px solid #374151' : '1px solid #e5e7eb'
+            }}
+          >
+            <h3 className="text-lg font-semibold mb-4" style={{ color: isDark ? '#f3f4f6' : '#111827' }}>Project Details</h3>
+            <div className="flex flex-wrap gap-2">
+              {project.techStack.map((tech, index) => (
+                <span 
+                  key={index} 
+                  className="px-3 py-1 text-sm rounded-full"
+                  style={{
+                    backgroundColor: isDark ? 'rgba(30, 58, 138, 0.3)' : '#dbeafe',
+                    color: isDark ? '#93c5fd' : '#1e40af',
+                    border: isDark ? '1px solid #3b82f6' : '1px solid #93c5fd'
+                  }}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </section>
+        </div>
 
         <section className="mb-12">
           <h2 className="text-2xl font-black mb-4 dark:text-white">Introduction</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{project.introduction}</p>
+          <p className="mb-8" style={{ color: isDark ? '#d1d5db' : '#4b5563' }}>
+            {project.introduction}
+          </p>
         </section>
 
         <section className="mb-12">
@@ -129,24 +152,46 @@ const ProjectDetail = () => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-black mb-4 dark:text-white">Technical Insights</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{project.technicalInsights}</p>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: isDark ? '#f3f4f6' : '#111827' }}>Technical Insights</h2>
+          <p className="leading-relaxed" style={{ color: isDark ? '#d1d5db' : '#4b5563' }}>
+            {project.technicalInsights}
+          </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-black mb-4 dark:text-white">Challenges and Solutions</h2>
-          <ul className="space-y-2">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: isDark ? '#f3f4f6' : '#111827' }}>Challenges & Solutions</h2>
+          <ul className="space-y-4">
             {project.challenges.map((challenge, index) => (
-              <li key={index} className="text-gray-600 dark:text-gray-300 leading-relaxed">• {challenge}</li>
+              <li 
+                key={index} 
+                className="p-4 rounded-lg"
+                style={{
+                  backgroundColor: isDark ? '#1f2937' : '#f9fafb',
+                  border: isDark ? '1px solid #374151' : '1px solid #e5e7eb'
+                }}
+              >
+                <p style={{ color: isDark ? '#d1d5db' : '#4b5563' }}>{challenge}</p>
+              </li>
             ))}
           </ul>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-black mb-4 dark:text-white">Outcome</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{project.outcome}</p>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: isDark ? '#f3f4f6' : '#111827' }}>Features</h2>
+          <ul className="list-disc list-inside space-y-2" style={{ color: isDark ? '#d1d5db' : '#4b5563' }}>
+            {project.features.map((feature, index) => (
+              <li key={index}>{feature}</li>
+            ))}
+          </ul>
         </section>
-      </main>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: isDark ? '#f3f4f6' : '#111827' }}>Outcome</h2>
+          <p className="leading-relaxed" style={{ color: isDark ? '#d1d5db' : '#4b5563' }}>
+            {project.outcome}
+          </p>
+        </section>
+      </div>
 
       <Footer />
     </div>

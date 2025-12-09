@@ -8,8 +8,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useTheme } from "../contexts/ThemeContext";
 
 const WorkPage = () => {
+    const { isDark } = useTheme();
     const [sortOrder, setSortOrder] = useState("newest");
     const [companyFilter, setCompanyFilter] = useState("all");
     const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -33,33 +35,68 @@ const WorkPage = () => {
         .sort((a, b) => sortOrder === "newest" ? b.date - a.date : a.date - b.date);
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 font-['Montserrat'] relative"
-            style={{ backgroundImage: 'radial-gradient(#d1d5db 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+        <div className="min-h-screen font-['Montserrat'] relative" style={{ backgroundColor: isDark ? '#111827' : '#ffffff' }}>
             <Navbar />
-            <div className="max-w-5xl mx-auto px-6 py-12">
+            <div className="max-w-5xl mx-auto px-6 py-12" style={{ color: isDark ? '#ffffff' : '#000000' }}>
                 {/* Header with Filters */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                     <div className="relative">
                         <button 
                             onClick={() => setShowCompanyDropdown(!showCompanyDropdown)}
-                            className="flex items-center gap-6 px-4 py-2 border-2 border-gray-800 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 dark:text-white font-semibold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none transition-all"
+                            className="flex items-center gap-6 px-4 py-2 rounded-md font-semibold text-sm transition-all"
+                            style={{
+                                border: isDark ? '2px solid #6b7280' : '2px solid #1f2937',
+                                backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                                color: isDark ? '#ffffff' : '#1f2937',
+                                boxShadow: '2px 2px 0px 0px rgba(0,0,0,0.8)',
+                                ':hover': {
+                                    boxShadow: 'none',
+                                    transform: 'translate(2px, 2px)'
+                                }
+                            }}
                         >
                             {companyFilter === "all" ? "Filter by Company" : companyFilter}
-                            <FontAwesomeIcon icon={faChevronDown} className="text-gray-400 text-xs" />
+                            <FontAwesomeIcon icon={faChevronDown} style={{ color: isDark ? '#9ca3af' : '#6b7280' }} className="text-xs ml-2" />
                         </button>
-                        <span className="absolute -top-2 -right-2 w-5 h-5 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center font-bold border border-white">1</span>
+                        <span 
+                            className="absolute -top-2 -right-2 w-5 h-5 text-white text-[10px] rounded-full flex items-center justify-center font-bold border"
+                            style={{
+                                backgroundColor: isDark ? '#3b82f6' : '#2563eb',
+                                borderColor: isDark ? '#1f2937' : '#ffffff'
+                            }}
+                        >
+                            1
+                        </span>
                         
                         {showCompanyDropdown && (
-                            <div className="absolute top-full mt-2 w-48 bg-white dark:bg-gray-800 border-2 border-gray-800 dark:border-gray-600 rounded-md shadow-lg z-10">
+                            <div 
+                                className="absolute top-full mt-2 w-48 rounded-md shadow-lg z-10"
+                                style={{
+                                    backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                                    border: isDark ? '2px solid #6b7280' : '2px solid #1f2937',
+                                }}
+                            >
                                 <button 
                                     onClick={() => { setCompanyFilter("all"); setShowCompanyDropdown(false); }} 
-                                    className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white text-sm"
+                                    className="w-full text-left px-4 py-2 text-sm"
+                                    style={{
+                                        color: isDark ? '#e5e7eb' : '#1f2937',
+                                        ':hover': {
+                                            backgroundColor: isDark ? '#374151' : '#f3f4f6'
+                                        }
+                                    }}
                                 >
                                     All
                                 </button>
                                 <button 
                                     onClick={() => { setCompanyFilter("Efuye Gela"); setShowCompanyDropdown(false); }} 
-                                    className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white text-sm"
+                                    className="w-full text-left px-4 py-2 text-sm"
+                                    style={{
+                                        color: isDark ? '#e5e7eb' : '#1f2937',
+                                        ':hover': {
+                                            backgroundColor: isDark ? '#374151' : '#f3f4f6'
+                                        }
+                                    }}
                                 >
                                     Efuye Gela
                                 </button>
@@ -70,23 +107,51 @@ const WorkPage = () => {
                     <div className="relative">
                         <button 
                             onClick={() => setShowSortDropdown(!showSortDropdown)}
-                            className="flex items-center gap-6 px-4 py-2 border-2 border-gray-800 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 dark:text-white font-semibold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none transition-all"
+                            className="flex items-center gap-6 px-4 py-2 rounded-md font-semibold text-sm transition-all"
+                            style={{
+                                border: isDark ? '2px solid #6b7280' : '2px solid #1f2937',
+                                backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                                color: isDark ? '#ffffff' : '#1f2937',
+                                boxShadow: '2px 2px 0px 0px rgba(0,0,0,0.8)',
+                                ':hover': {
+                                    boxShadow: 'none',
+                                    transform: 'translate(2px, 2px)'
+                                }
+                            }}
                         >
                             {sortOrder === "newest" ? "Newest First" : "Oldest First"}
-                            <FontAwesomeIcon icon={faChevronDown} className="text-gray-400 text-xs" />
+                            <FontAwesomeIcon icon={faChevronDown} style={{ color: isDark ? '#9ca3af' : '#6b7280' }} className="text-xs ml-2" />
                         </button>
                         
                         {showSortDropdown && (
-                            <div className="absolute top-full mt-2 w-48 bg-white dark:bg-gray-800 border-2 border-gray-800 dark:border-gray-600 rounded-md shadow-lg z-10">
+                            <div 
+                                className="absolute top-full mt-2 w-48 rounded-md shadow-lg z-10"
+                                style={{
+                                    backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                                    border: isDark ? '2px solid #6b7280' : '2px solid #1f2937',
+                                }}
+                            >
                                 <button 
                                     onClick={() => { setSortOrder("newest"); setShowSortDropdown(false); }} 
-                                    className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white text-sm"
+                                    className="w-full text-left px-4 py-2 text-sm"
+                                    style={{
+                                        color: isDark ? '#e5e7eb' : '#1f2937',
+                                        ':hover': {
+                                            backgroundColor: isDark ? '#374151' : '#f3f4f6'
+                                        }
+                                    }}
                                 >
                                     Newest First
                                 </button>
                                 <button 
                                     onClick={() => { setSortOrder("oldest"); setShowSortDropdown(false); }} 
-                                    className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white text-sm"
+                                    className="w-full text-left px-4 py-2 text-sm"
+                                    style={{
+                                        color: isDark ? '#e5e7eb' : '#1f2937',
+                                        ':hover': {
+                                            backgroundColor: isDark ? '#374151' : '#f3f4f6'
+                                        }
+                                    }}
                                 >
                                     Oldest First
                                 </button>
@@ -101,24 +166,33 @@ const WorkPage = () => {
                         <Link
                             key={index}
                             to={`/work/${exp.id}`}
-                            className="block border-2 border-gray-800 dark:border-gray-600 rounded-2xl p-6 md:p-8 bg-white dark:bg-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer"
+                            className="block rounded-2xl p-6 md:p-8 transition-all cursor-pointer"
+                            style={{
+                                border: isDark ? '2px solid #6b7280' : '2px solid #1f2937',
+                                backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                                boxShadow: '4px 4px 0px 0px rgba(0,0,0,0.8)',
+                                ':hover': {
+                                    transform: 'translate(4px, 4px)',
+                                    boxShadow: 'none'
+                                }
+                            }}
                         >
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                                {exp.role} @ <span className="text-blue-600 dark:text-blue-400">{exp.company}</span>
+                            <h3 className="text-xl font-bold mb-3" style={{ color: isDark ? '#ffffff' : '#111827' }}>
+                                {exp.role} @ <span style={{ color: isDark ? '#93c5fd' : '#2563eb' }}>{exp.company}</span>
                             </h3>
 
-                            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400 mb-4 font-medium">
+                            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm mb-4 font-medium" style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
                                 <span className="flex items-center">
-                                    <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 w-4 text-center" />
+                                    <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 w-4 text-center" style={{ color: isDark ? '#9ca3af' : '#6b7280' }} />
                                     {exp.period}
                                 </span>
                                 <span className="flex items-center">
-                                    <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 w-4 text-center" />
+                                    <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 w-4 text-center" style={{ color: isDark ? '#9ca3af' : '#6b7280' }} />
                                     {exp.type ? `${exp.type}, ${exp.location}` : exp.location}
                                 </span>
                             </div>
 
-                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            <p className="leading-relaxed" style={{ color: isDark ? '#d1d5db' : '#4b5563' }}>
                                 {exp.description}
                             </p>
                         </Link>
