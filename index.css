@@ -1,32 +1,112 @@
 @import "tailwindcss";
 
+@layer base {
+  :root {
+    --color-primary: 59 130 246; /* blue-500 */
+    --color-primary-dark: 37 99 235; /* blue-600 */
+    --color-background: 255 255 255; /* white */
+    --color-foreground: 17 24 39; /* gray-900 */
+    --color-muted: 243 244 246; /* gray-100 */
+    --color-muted-foreground: 75 85 99; /* gray-600 */
+    --color-border: 229 231 235; /* gray-200 */
+    --color-card: 255 255 255; /* white */
+    --color-card-foreground: 17 24 39; /* gray-900 */
+  }
+
+  .dark {
+    --color-primary: 99 102 241; /* indigo-500 */
+    --color-primary-dark: 79 70 229; /* indigo-600 */
+    --color-background: 15 23 42; /* slate-900 */
+    --color-foreground: 241 245 249; /* slate-100 */
+    --color-muted: 30 41 59; /* slate-800 */
+    --color-muted-foreground: 148 163 184; /* slate-400 */
+    --color-border: 51 65 85; /* slate-700 */
+    --color-card: 15 23 42; /* slate-900 */
+    --color-card-foreground: 241 245 249; /* slate-100 */
+    color-scheme: dark;
+  }
+}
+
 * {
-  transition-property: all;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
 }
 
+/* Base styles */
 body {
-  font-family: "Inter", "Work Sans", system-ui, -apple-system, sans-serif;
+  font-family: "Montserrat", system-ui, -apple-system, sans-serif;
   line-height: 1.6;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
 }
 
-/* Custom scrollbar */
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: rgb(var(--color-foreground));
+}
+
+p {
+  color: rgb(var(--color-muted-foreground));
+}
+
+/* Links */
+a {
+  color: rgb(var(--color-primary));
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: rgb(var(--color-primary-dark));
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: rgb(var(--color-muted));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3b82f6, #9333ea);
+  background: rgb(var(--color-primary));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #2563eb, #7e22ce);
+  background: rgb(var(--color-primary-dark));
+}
+
+/* Forms */
+input, textarea, select {
+  background-color: rgb(var(--color-background));
+  border: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-foreground));
+}
+
+/* Cards */
+.card {
+  background-color: rgb(var(--color-card));
+  border: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-card-foreground));
+}
+
+/* Buttons */
+.btn {
+  background-color: rgb(var(--color-primary));
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: rgb(var(--color-primary-dark));
+}
+
+/* Dark mode specific overrides */
+.dark {
+  /* Additional dark mode overrides can go here */
 }
 
 /* Smooth scrolling */

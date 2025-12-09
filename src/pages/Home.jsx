@@ -1,300 +1,133 @@
 import {
-  faArrowRight,
-  faCode,
-  faDownload,
-  faPalette,
-  faRocket,
-  faUsers
+  faCalendarAlt,
+  faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import person from "../assets/images/person.png";
-// Assuming you have a background image for the banner in this path
-import bannerBg from "../assets/images/banner-bg.png";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import chatAppImg from "../assets/images/projects/chat_app.png";
+import phonesellImg from "../assets/images/projects/phonesell.png";
 
 const Home = () => {
-  const stats = [
-    { number: "9+", label: "Projects Completed" },
-    { number: "3+", label: "In Progress" },
-    { number: "2+", label: "Years Experience" },
-    { number: "15+", label: "Technologies" }
-  ];
-
-  const services = [
-    {
-      icon: faCode,
-      title: "Frontend Development",
-      description: "Building responsive React.js and Next.js applications with clean, user-friendly interfaces."
-    },
-    {
-      icon: faPalette,
-      title: "System Analysis",
-      description: "Analyzing requirements and designing effective solutions for projects and applications."
-    },
-    {
-      icon: faRocket,
-      title: "Developer Support",
-      description: "Helping other developers troubleshoot, optimize code, and implement best practices."
-    },
-    {
-      icon: faUsers,
-      title: "Consulting",
-      description: "Expert guidance on technology choices and architecture decisions."
-    }
-  ];
-
-  const recentProjects = [
-    {
-      title: "Country Quiz App",
-      description: "A React-based country flag quiz app featuring multiple-choice questions and interactive feedback.",
-      image: "./src/assets/images/projects/country_quiz.png",
-      link: "/projects"
-    },
-    {
-      title: "Real-time Chat Application",
-      description: "Full-stack messaging app with Socket.IO integration, authentication, and private & global chats.",
-      image: "./src/assets/images/projects/chat_app.png",
-      link: "/projects"
-    },
-    {
-      title: "TechBit Blog Platform (Next.js)",
-      description: "A modern blog platform built with Next.js, featuring dynamic content and responsive design.",
-      image: "./src/assets/images/projects/techbit.png",
-      link: "/projects"
-    }
-  ];
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <div
-        className="relative py-12 sm:py-16 lg:py-20 bg-cover bg-center"
-        style={{ backgroundImage: `url(${bannerBg})` }}
-      >
-        <div className="absolute inset-0 bg-blue-900/70"></div>
+    <div className="min-h-screen bg-white dark:bg-gray-900 font-['Montserrat'] relative"
+      style={{ backgroundImage: 'radial-gradient(#d1d5db 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+      <Navbar />
+      <div className="max-w-5xl mx-auto px-6 py-12">
+      {/* --- SECTION 1: INTRO --- */}
+      <section id="intro" className="py-12 text-center">
+        <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6">Hi, I'm Beshah 👋</h2>
+        <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
+          I am a <b>Full-Stack Developer</b> and Information Science student specialized in building scalable, high-performance web applications. With a strong foundation in <b>React.js and Next.js</b>, I leverage Tailwind CSS for polished interfaces and <b>GraphQL, Express, and MongoDB</b> to architect robust, data-driven backends.
+        </p>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="text-white order-2 lg:order-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-                Hello, I'm{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
-                  Beshah
-                </span>
-              </h1>
-              <p className="text-lg sm:text-xl lg:text-2xl mb-4 sm:mb-6 text-white/90 leading-relaxed">
-                Building responsive, user-centric web experiences with React.js, Next.js, and modern CSS frameworks
-              </p>
-              <p className="text-base sm:text-lg mb-6 sm:mb-8 text-white/80 leading-relaxed">
-                Fourth-year Information Systems student and passionate front-end developer specializing in
-                React.js, Next.js, Tailwind CSS, and Bootstrap. Let's create something amazing together!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link
-                  to="/contact"
-                  className="bg-white text-blue-600 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
-                >
-                  Get In Touch
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </Link>
-                <Link
-                  to="/projects"
-                  className="bg-white/20 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
-                >
-                  View My Work
-                </Link>
-              </div>
-            </div>
-            <div className="flex justify-center order-1 lg:order-2">
-              <div className="relative">
-                <img
-                  src={person}
-                  alt="Beshah"
-                  className="w-64 h-80 sm:w-72 sm:h-90 lg:w-80 lg:h-96 object-cover rounded-2xl shadow-2xl"
-                />
-                <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white rounded-xl p-3 sm:p-4 shadow-lg">
-                  <div className="text-center">
-                    <div className="text-xl sm:text-2xl font-bold text-blue-600">9+</div>
-                    <div className="text-xs sm:text-sm text-gray-600">Projects</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="mt-12">
+          <h3 className="text-xl font-black mb-6 dark:text-white">Quick & Fun Facts</h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            <span className="border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 dark:text-gray-200 px-4 py-2 rounded-2xl text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+              🌐 English/Amharic
+            </span>
+            <span className="border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 dark:text-gray-200 px-4 py-2 rounded-2xl text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+              ⚡ MERN Stack
+            </span>
+            <span className="border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 dark:text-gray-200 px-4 py-2 rounded-2xl text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+              🎓 Information System @ AAU
+            </span>
+            <span className="border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 dark:text-gray-200 px-4 py-2 rounded-2xl text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+              📍 Addis Ababa, Ethiopia
+            </span>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Stats Section */}
-      <div className="bg-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-sm sm:text-base text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+      {/* --- SECTION 2: WORK EXPERIENCE --- */}
+      <section id="work" className="py-12 space-y-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex justify-between items-center">
+          <h3 className="text-2xl font-black dark:text-white">Work Experience</h3>
+          <Link to="/work" className="text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline">View all (1)</Link>
         </div>
-      </div>
 
-      {/* About Section */}
-      <div className="bg-gray-50 py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              About Me
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              I'm a fourth-year Information Systems student and passionate front-end developer,
-              dedicated to creating exceptional user experiences with modern web technologies.
-            </p>
+        <Link 
+          to="/work/efuye-gela" 
+          className="block border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-white/50 dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-200"
+        >
+          <h4 className="text-xl font-bold mb-2 dark:text-white">
+            Front-end Intern @ <span className="text-blue-600 dark:text-blue-400">Efuye Gela</span>
+          </h4>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400 mb-4 font-medium">
+            <span className="flex items-center">
+              <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 w-4 text-center" />
+              Jun 2025 – Sep 2025
+            </span>
+            <span className="flex items-center">
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 w-4 text-center" />
+              On-site / Addis Ababa
+            </span>
           </div>
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
-                Frontend Developer & Information Systems Student
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                I'm a fourth-year Information Systems student at Addis Ababa University and a passionate front-end developer.
-                I specialize in crafting responsive, user-friendly web interfaces using React.js, Next.js, Tailwind CSS, and Bootstrap.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link
-                  to="/about"
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 text-center text-sm sm:text-base"
-                >
-                  Learn More About Me
-                </Link>
-                <a
-                  href="./src/assets/resume/resume.pdf"
-                  download
-                  className="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
-                >
-                  <FontAwesomeIcon icon={faDownload} />
-                  Download Resume
-                </a>
-              </div>
-            </div>
-            <div className="flex justify-center order-1 lg:order-2">
-              <img
-                src={person}
-                alt="About Beshah"
-                className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 object-cover rounded-2xl shadow-lg"
+          <p className="text-gray-600 dark:text-gray-300">
+            Building and maintaining React-based applications, integrating modern frontend technologies, and delivering features that improve user interaction.
+          </p>
+        </Link>
+      </section>
+
+      {/* --- SECTION 3: PROJECTS --- */}
+      <section id="projects" className="py-12 space-y-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex justify-between items-center">
+          <h3 className="text-2xl font-black dark:text-white">Featured Projects</h3>
+          <Link to="/projects" className="text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline">View all (2)</Link>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Link 
+            to="/projects/chat-app" 
+            className="group block border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden bg-white/50 dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-200"
+          >
+            <div className="h-48 overflow-hidden">
+              <img 
+                src={chatAppImg} 
+                alt="Chat App" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
               />
             </div>
-          </div>
-        </div>
-      </div>
+            <div className="p-6">
+              <h4 className="text-xl font-bold mb-2 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                Real-time Chat Application
+              </h4>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
+                A real-time chat application built with React, Node.js, and Socket.io.
+              </p>
+            </div>
+          </Link>
 
-      {/* Services Section */}
-      <div className="bg-white py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              What I Do
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive web development and design services to bring your digital vision to life.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="text-center p-4 sm:p-6 rounded-xl hover:shadow-lg transition-all duration-300 bg-gray-50 hover:bg-white">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <FontAwesomeIcon icon={service.icon} className="text-white text-lg sm:text-2xl" />
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{service.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{service.description}</p>
+          <Link 
+            to="/projects/phone-sell" 
+            className="group block border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden bg-white/50 dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-200"
+          >
+            <div className="h-48 overflow-hidden">
+              <img 
+                src={phonesellImg} 
+                alt="Phone Sell" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+              />
+            </div>
+            <div className="p-6">
+              <h4 className="text-xl font-bold mb-2 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                Phone E-commerce Platform
+              </h4>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
+                An e-commerce platform for buying and selling phones.
+              </p>
+              <div className="flex gap-2 mt-3">
+                <span className="bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-[10px] font-bold px-2 py-1 rounded border border-gray-300 dark:border-gray-600">REACT</span>
+                <span className="bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-[10px] font-bold px-2 py-1 rounded border border-gray-300 dark:border-gray-600">NODE.JS</span>
               </div>
-            ))}
-          </div>
-          <div className="text-center mt-8 sm:mt-12">
-            <Link
-              to="/services"
-              className="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 text-sm sm:text-base"
-            >
-              View All Services
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
+      </section>
       </div>
-
-      {/* Recent Projects */}
-      <div className="bg-gray-50 py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Recent Projects
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              A showcase of my latest work and projects that demonstrate my skills and expertise.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {recentProjects.map((project, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">{project.description}</p>
-                  <Link
-                    to={project.link}
-                    className="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 text-sm sm:text-base"
-                  >
-                    View Project →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-8 sm:mt-12">
-            <Link
-              to="/projects"
-              className="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 text-sm sm:text-base"
-            >
-              View All Projects
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section - UPDATED BACKGROUND AND BUTTONS */}
-      <div className="bg-white py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
-            Ready to Start Your Next Project?
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-            Let's work together to bring your ideas to life. I'm here to help you create
-            something amazing that your users will love.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            {/* Changed from button style to text link style */}
-            <Link
-              to="/contact"
-              className="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 text-lg sm:text-xl flex items-center justify-center gap-1"
-            >
-              Get In Touch →
-            </Link>
-            {/* Changed from button style to text link style */}
-            <Link
-              to="/about"
-              className="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 text-lg sm:text-xl flex items-center justify-center gap-1"
-            >
-              Learn More About Me →
-            </Link>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 };
