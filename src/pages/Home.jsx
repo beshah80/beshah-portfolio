@@ -20,7 +20,7 @@ const Home = () => {
       <section id="intro" className="py-12 text-center">
         <h2 className="text-4xl md:text-5xl font-black mb-6" style={{ color: isDark ? '#ffffff' : '#111827' }}>Hi, I'm Beshah 👋</h2>
         <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: isDark ? '#d1d5db' : '#4b5563' }}>
-          I am a <b style={{ color: isDark ? '#ffffff' : '#111827' }}>Full-Stack Developer</b> and Information Science student specialized in building scalable, high-performance web applications. With a strong foundation in <b style={{ color: isDark ? '#ffffff' : '#111827' }}>React.js and Next.js</b>, I leverage Tailwind CSS for polished interfaces and <b style={{ color: isDark ? '#ffffff' : '#111827' }}>GraphQL, Express, and MongoDB</b> to architect robust, data-driven backends.
+          I am a <b style={{ color: isDark ? '#ffffff' : '#111827' }}>Full-Stack Developer</b> and Information Science student specializing in building scalable, high-performance web applications. With a strong foundation in <b style={{ color: isDark ? '#ffffff' : '#111827' }}>React.js and Next.js</b>, I craft polished user interfaces with Tailwind CSS and develop robust, data-driven backends using <b style={{ color: isDark ? '#ffffff' : '#111827' }}>GraphQL, Express, and MongoDB</b>.
         </p>
 
         <div className="mt-12">
@@ -197,7 +197,7 @@ const Home = () => {
           </Link>
 
           <Link 
-            to="/projects/phone-sell" 
+            to="/projects/phonesell" 
             className="group block rounded-2xl overflow-hidden transition-all duration-200"
             style={{
               border: isDark ? '2px solid #9ca3af' : '2px solid #1f2937',
